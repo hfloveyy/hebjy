@@ -20,6 +20,8 @@ def login():
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
+    flash(form.name.data)
+    flash(form.password.data)
     if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `User` class
@@ -28,7 +30,7 @@ def login():
         flash('Logged in successfully.')
         flash(form.name.data)
         flash(form.password.data)
-        flash(form.password.data)
+
         # next_is_valid should check if the user has valid
         # permission to access the `next` url
         #if not next_is_valid(next):
