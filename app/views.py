@@ -2,7 +2,7 @@ from app import app
 from flask import render_template,flash,redirect,url_for,abort,request
 from .models import User
 from .forms import LoginForm
-from app import login_manager
+from app import login_manager,login_user,login_required,logout_user
 
 
 @login_manager.user_loader
@@ -20,13 +20,11 @@ def login():
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
-    flash(form.validate_on_submit())
-    flash(form.errors)
-    flash(form.password.data)
     if form.validate_on_submit():
+        user = User(form.name.data,form.password.data)
         # Login and validate the user.
         # user should be an instance of your `User` class
-        #login_user(user)
+        login_user(user)
 
         flash('Logged in successfully.')
         flash(form.name.data)
@@ -40,3 +38,9 @@ def login():
 
         return redirect(url_for('index'))
     return render_template('login.html',form =form)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))

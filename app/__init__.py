@@ -1,7 +1,7 @@
 from flask import Flask
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
+from flask.ext.login import LoginManager,login_user,login_required,logout_user
 app = Flask(__name__)
 
 app.config.from_pyfile('config.py')
