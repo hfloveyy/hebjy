@@ -28,7 +28,7 @@ def login():
         flash('Logged in successfully.')
         flash(form.name.data)
         flash(form.password.data)
-
+        flash(form.password.data)
         # next_is_valid should check if the user has valid
         # permission to access the `next` url
         #if not next_is_valid(next):
