@@ -17,26 +17,24 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
     if form.validate_on_submit():
-        user = User(nickname = form.name.data,password = form.password.data)
+        user = User.query.filter_by(nickname = form.name.data).first()
+        if user is not None and user.password == form.password.data:
         # Login and validate the user.
         # user should be an instance of your `User` class
-        login_user(user)
-        flash(form.name.data)
-        # next_is_valid should check if the user has valid
-        # permission to access the `next` url
-        #if not next_is_valid(next):
-        #    return abort(400)
-
-        return redirect(url_for('add'))
-    return render_template('login.html',form = form)
+            login_user(user)
+            return redirect(url_for('add'))
+        else:
+            error = '登录失败,请重新登录！'
+    return render_template('login.html',form = form,error = error)
 
 @app.route("/logout")
-#@login_required
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
