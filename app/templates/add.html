@@ -24,38 +24,15 @@
 {% block content %}
 <div class="container">
     <div class="page-header">
-            {% if not session.logged_in %}
-            <a href="{{ url_for('login') }}">log in</a>
-        {% else %}
+        {% if  username %}
             <a href="{{ url_for('logout') }}">退出登录</a>
         {% endif %}
   {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
   <form action="{{ url_for('add') }}" method="post">
     <dl>
-      <dt>监区:
+      <dt>部门:
       <dd>
-      <select name="jianqu">
-        <option style="width:100px" >一监区</option>
-        <option style="width:100px" >二监区</option>
-        <option style="width:100px" >三监区</option>
-        <option style="width:100px" >四监区</option>
-        <option style="width:100px" >五监区</option>
-        <option style="width:100px" >六监区</option>
-        <option style="width:100px" >七监区</option>
-        <option style="width:100px" >八监区</option>
-        <option style="width:100px" >九监区</option>
-        <option style="width:100px" >十监区</option>
-        <option style="width:100px" >十一监区</option>
-        <option style="width:100px" >十二监区</option>
-        <option style="width:100px" >后勤监区</option>
-        <option style="width:100px" >外籍监区</option>
-        <option style="width:100px" >集训监区</option>
-        <option style="width:100px" >出监监区</option>
-        <option style="width:100px" >病犯监区</option>
-        <option style="width:100px" >禁闭、严管</option>
-        <option style="width:100px" >高戒备</option>
-        <option style="width:100px" >改造业务科室</option>
-      </select>
+      {{ username }}
       <dt>值班领导:
       <dd>
       <input type="text" name="zhibanlingdao" style="width:100px" required>
