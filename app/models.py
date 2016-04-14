@@ -27,32 +27,32 @@ class User(db.Model):
 
 class UploadForm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    jianqu = db.Column(db.String(20), index=True, unique=True)
-    zhibanlingdao = db.Column(db.String(20), index=True, unique=True)
-    baitianzaigang = db.Column(db.String(20), index=True, unique=True)
-    yejianzhiban = db.Column(db.String(20), index=True, unique=True)
-    zaice = db.Column(db.String(20), index=True, unique=True)
-    shiyou = db.Column(db.String(20), index=True, unique=True)
-    chugong = db.Column(db.String(20), index=True, unique=True)
-    beizhu = db.Column(db.String(20), index=True, unique=True)
+    jianqu = db.Column(db.String(20), index=True)
+    zhibanlingdao = db.Column(db.String(20), index=True)
+    baitianzaigang = db.Column(db.String(20), index=True)
+    yejianzhiban = db.Column(db.String(20), index=True)
+    zaice = db.Column(db.String(20), index=True)
+    shiyou = db.Column(db.String(20), index=True)
+    chugong = db.Column(db.String(20), index=True)
+    beizhu = db.Column(db.String(20), index=True)
     createtime = db.Column(db.String(20), index=True, unique=True)
 
 class KanshouForm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    zhibanlingdao = db.Column(db.String(20), index=True, unique=True)
-    damen = db.Column(db.String(20), index=True, unique=True)
-    ermen = db.Column(db.String(20), index=True, unique=True)
-    sanmen = db.Column(db.String(20), index=True, unique=True)
-    beizhu = db.Column(db.String(20), index=True, unique=True)
-    createtime = db.Column(db.String(20), index=True, unique=True)
+    zhibanlingdao = db.Column(db.String(20), index=True)
+    damen = db.Column(db.String(20), index=True)
+    ermen = db.Column(db.String(20), index=True)
+    sanmen = db.Column(db.String(20), index=True)
+    beizhu = db.Column(db.String(20), index=True)
+    createtime = db.Column(db.String(20), index=True)
 
 class TongbaoForm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     createtime = db.Column(db.String(500), index=True, unique=True)
-    jianguan = db.Column(db.String(500), index=True, unique=True)
-    jingwu = db.Column(db.String(500), index=True, unique=True)
-    yuqing = db.Column(db.String(500), index=True, unique=True)
-    shengchan = db.Column(db.String(500), index=True, unique=True)
+    jianguan = db.Column(db.String(500), index=True)
+    jingwu = db.Column(db.String(500), index=True)
+    yuqing = db.Column(db.String(500), index=True)
+    shengchan = db.Column(db.String(500), index=True)
 
 
 def init_db():
