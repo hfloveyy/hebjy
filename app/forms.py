@@ -1,6 +1,7 @@
 from flask_wtf import Form
 from wtforms import PasswordField
 from wtforms import SelectField
+from wtforms import StringField
 from wtforms.validators import DataRequired
 
 
@@ -12,3 +13,19 @@ jianqu_names = [('一监区','一监区'),('二监区','二监区'),('三监区'
 class LoginForm(Form):
     name = SelectField('name', validators=[DataRequired()],choices= jianqu_names)
     password = PasswordField('password',validators=[DataRequired()])
+
+class ReportForm(Form):
+    zhibanlingdao = StringField('zhibanlingdao', validators=[DataRequired()])
+    baitianzaigang = StringField('baitianzaigang', validators=[DataRequired()])
+    yejianzhiban = StringField('yejianzhiban', validators=[DataRequired()])
+    zaice = StringField('zaice', validators=[DataRequired()])
+    shiyou = StringField('shiyou', validators=[DataRequired()])
+    chugong = StringField('chugong', validators=[DataRequired()])
+    beizhu = StringField('beizhu', validators=[DataRequired()])
+
+class KanshouForm(Form):
+    zhibanlingdao = StringField('zhibanlingdao', validators=[DataRequired()])
+    damen = StringField('damen', validators=[DataRequired()])
+    ermen = StringField('ermen', validators=[DataRequired()])
+    sanmen = StringField('sanmen', validators=[DataRequired()])
+    beizhu = StringField('beizhu', validators=[DataRequired()])

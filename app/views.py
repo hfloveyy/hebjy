@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template,flash,redirect,url_for,abort,request,session,g
-from .models import User
-from .forms import LoginForm
+from .models import User,ReportModel,KanshouModel,TongbaoModel
+from .forms import LoginForm,ReportForm
 from flask.ext.login import login_user, login_required, logout_user, current_user
 from app import login_manager
 
@@ -48,4 +48,5 @@ def before_request():
 @login_required
 def add():
     username = g.user.nickname
+    form = ReportForm()
     return render_template('add.html',username = username)

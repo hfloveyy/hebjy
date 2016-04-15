@@ -25,7 +25,7 @@ class User(db.Model):
         return '<User %r>' % (self.nickname)
 
 
-class UploadForm(db.Model):
+class ReportModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     jianqu = db.Column(db.String(20), index=True)
     zhibanlingdao = db.Column(db.String(20), index=True)
@@ -37,7 +37,7 @@ class UploadForm(db.Model):
     beizhu = db.Column(db.String(20), index=True)
     createtime = db.Column(db.String(20), index=True, unique=True)
 
-class KanshouForm(db.Model):
+class KanshouModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     zhibanlingdao = db.Column(db.String(20), index=True)
     damen = db.Column(db.String(20), index=True)
@@ -46,7 +46,7 @@ class KanshouForm(db.Model):
     beizhu = db.Column(db.String(20), index=True)
     createtime = db.Column(db.String(20), index=True)
 
-class TongbaoForm(db.Model):
+class TongbaoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     createtime = db.Column(db.String(500), index=True, unique=True)
     jianguan = db.Column(db.String(500), index=True)
@@ -56,9 +56,10 @@ class TongbaoForm(db.Model):
 
 
 def init_db():
-    users = []
+    from app import db
+    from app.models import User
+    db.create_all()
     for name in jianqu_names:
-        users.append(User(nickname=name, password='1'))
-    for user in users:
+        user =User(nickname=name, password='1')
         db.session.add(user)
         db.session.commit()

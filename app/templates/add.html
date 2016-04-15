@@ -35,25 +35,25 @@
       {{ username }}
       <dt>值班领导:
       <dd>
-      <input type="text" name="zhibanlingdao" style="width:100px" required>
+      {{ form.zhibanlingdao }}
       <dt>白天在岗民警数:
       <dd>
-      <input type="text" name="baitianzaigang" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+      {{ form.baitianzaigang }}
       <dt>夜间值班民警数:
       <dd>
-      <input type="text" name="yejianzhiban" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+      {{ form.yejianzhiban }}
       <dt>在册罪犯人数:
       <dd>
-      <input type="text" name="zaice" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+      {{ form.zaice }}
       <dt>实有罪犯人数:
       <dd>
-      <input type="text" name="shiyou" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+      {{ form.shiyou }}
       <dt>出工罪犯人数:
       <dd>
-      <input type="text" name="chugong" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" >
+      {{ form.chugong }}
       <dt>填表人:
       <dd>
-      <input type="text" name="beizhu" style="width:100px" >
+      {{ form.beizhu }}
       <dd><input type="submit" value="上报">
     </dl>
   </form>
