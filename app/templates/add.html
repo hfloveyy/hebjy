@@ -27,8 +27,8 @@
         {% if  username %}
             <a href="{{ url_for('logout') }}">退出登录</a>
         {% endif %}
-  {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
   <form action="{{ url_for('add') }}" method="post">
+      {{ form.hidden_tag() }}
     <dl>
       <dt>部门:
       <dd>

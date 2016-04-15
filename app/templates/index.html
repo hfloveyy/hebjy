@@ -45,19 +45,17 @@
    </thead>
    <tbody>
       <tr>
-      {% for one in number:%}
-            {%for some in one:%}
+      {% for one in content:%}
 
-         <td>{{some[1]}}</td>
-         <td>{{some[2]}}</td>
-         <td>{{some[3]}}</td>
-         <td>{{some[4]}}</td>
-         <td>{{some[5]}}</td>
-         <td>{{some[6]}}</td>
-         <td>{{some[7]}}</td>
-         <td>{{some[8]}}</td>
-         <td>{{some[9]}}</td>
-            {% endfor%}
+         <td>{{ one.jianqu }}</td>
+         <td>{{ one.zhibanlingdao }}</td>
+         <td>{{ one.baitianzaigang }}</td>
+         <td>{{ one.yejianzhiban }}</td>
+         <td>{{ one.zaice }}</td>
+         <td>{{ one.shiyou }}</td>
+         <td>{{ one.chugong }}</td>
+         <td>{{ one.beizhu }}</td>
+         <td>{{ one.createtime }}</td>
             </tr>
       {% endfor%}
       

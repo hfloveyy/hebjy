@@ -31,6 +31,7 @@
         {% endif %}
   {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
   <form action="{{ url_for('addks') }}" method="post">
+      {{ form.hidden_tag() }}
     <dl>
       <dd>
       <select name="kanshou">
@@ -39,19 +40,19 @@
       </select>
       <dt>值班领导:
       <dd>
-      <input type="text" name="zhibanlingdao" style="width:100px" required>
+      {{ form.zhibanlingdao }}
       <dt>大门:
       <dd>
-      <input type="text" name="damen" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" required>
+      {{ form.damen }}
       <dt>二门:
       <dd>
-      <input type="text" name="ermen" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" required>
+      {{ form.ermen }}
       <dt>三门:
       <dd>
-      <input type="text" name="sanmen" style="width:100px" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" required>
+      {{ form.sanmen }}
       <dt>填表人:
       <dd>
-      <input type="text" name="beizhu" style="width:100px" required>
+      {{ form.beizhu }}
       <dd><input type="submit" value="上报">
     </dl>
   </form>
