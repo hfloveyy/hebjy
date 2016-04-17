@@ -49,10 +49,10 @@ class KanshouModel(db.Model):
 class TongbaoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     createtime = db.Column(db.String(500), index=True, unique=True)
-    jianguan = db.Column(db.String(500), index=True)
-    jingwu = db.Column(db.String(500), index=True)
-    yuqing = db.Column(db.String(500), index=True)
-    shengchan = db.Column(db.String(500), index=True)
+    jianguan = db.Column(db.Text, index=True)
+    jingwu = db.Column(db.Text, index=True)
+    yuqing = db.Column(db.Text, index=True)
+    shengchan = db.Column(db.Text, index=True)
 
 
 def init_db():

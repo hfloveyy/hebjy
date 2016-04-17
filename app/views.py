@@ -7,7 +7,7 @@ from app import login_manager
 from app import db
 import time
 from sqlalchemy import func
-
+from sqlalchemy.sql.expression import collate
 
 jianqu_names = ['一监区','二监区','三监区','四监区','五监区','六监区','七监区',
 '八监区','九监区','十监区','十一监区','十二监区','后勤监区','外籍监区','集训监区','出监监区','病犯监区','禁闭、严管','高戒备','改造业务科室']
@@ -18,6 +18,26 @@ def get_time(timeStamp):
     otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     return otherStyleTime
 
+def sum_all(report):
+    sum = []
+    btzg = 0
+    yjzb = 0
+    zc = 0
+    sy = 0
+    cg = 0
+    for some in report:
+        btzg += int(some.baitianzaigang)
+        yjzb += int(some.yejianzhiban)
+        zc += int(some.zaice)
+        sy += int(some.shiyou)
+        cg += int(some.chugong)
+    sum.append(btzg)
+    sum.append(yjzb)
+    sum.append(zc)
+    sum.append(sy)
+    sum.append(cg)
+    return sum
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -25,16 +45,21 @@ def load_user(user_id):
 
 @app.route('/')
 def index():
-    content = []
+    reports = []
 
     for jianqu in jianqu_names:
-        res = db.session.query(func.max(ReportModel.createtime).label('max_time')).one()
-        
-        data = ReportModel.query.filter_by(jianqu = jianqu).last()
-        if data:
-            content.append(data)
-
-    return render_template('index.html', content = content)
+        #报表
+        one = ReportModel.query.filter_by(jianqu = jianqu).order_by(ReportModel.createtime.desc()).first()
+        if one:
+            reports.append(one)
+        #report = ReportModel.query.group_by(ReportModel.jianqu).order_by(ReportModel.jianqu).order_by(ReportModel.createtime.desc())
+        #collate(ReportModel.jianqu, 'Chinese_PRC_CI_AS')
+        #看守大队
+    kanshou = KanshouModel.query.order_by(KanshouModel.createtime.desc()).first()
+    #合计
+    report = ReportModel.query.group_by(ReportModel.jianqu).order_by(ReportModel.jianqu).order_by(ReportModel.createtime.desc())
+    total = sum_all(report)
+    return render_template('index.html', content = reports,total = total,kanshou = kanshou)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

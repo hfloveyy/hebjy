@@ -45,7 +45,7 @@
    </thead>
    <tbody>
       <tr>
-      {% for one in content:%}
+      {% for one in content%}
 
          <td>{{ one.jianqu }}</td>
          <td>{{ one.zhibanlingdao }}</td>
@@ -63,7 +63,7 @@
       <tr>
       <td>合计</td>
       <td></td>
-      {% for some in total:%}
+      {% for some in total%}
          <td>{{some}}</td>
 
       {% endfor%}
@@ -84,17 +84,16 @@
          <th>上报时间</th>
       </tr>
       <tr>
-      {% for some in kanshou:%}
-          <td>{{some[1]}}</td>
-          <td>{{some[2]}}</td>
+          <td>{{kanshou.zhibanlingdao}}</td>
+          <td>{{kanshou.damen}}</td>
           <td></td>
-          <td>{{some[3]}}</td>
+          <td>{{kanshou.ermen}}</td>
           <td></td>
-          <td>{{some[4]}}</td>
+          <td>{{kanshou.sanmen}}</td>
+
           <td></td>
-          <td>{{some[5]}}</td>
-          <td>{{some[6]}}</td>
-      {% endfor%}  
+          <td>{{kanshou.beizhu}}</td>
+          <td>{{kanshou.createtime}}</td>
       </tr>
       
    </tbody>
