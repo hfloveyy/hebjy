@@ -48,7 +48,7 @@ class KanshouModel(db.Model):
 
 class TongbaoModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    createtime = db.Column(db.String(500), index=True, unique=True)
+    createtime = db.Column(db.String(20), index=True)
     jianguan = db.Column(db.Text, index=True)
     jingwu = db.Column(db.Text, index=True)
     yuqing = db.Column(db.Text, index=True)

@@ -2,6 +2,7 @@ from flask_wtf import Form
 from wtforms import PasswordField
 from wtforms import SelectField
 from wtforms import StringField
+from wtforms import TextAreaField
 from wtforms.validators import DataRequired
 
 
@@ -29,3 +30,9 @@ class KanshouForm(Form):
     ermen = StringField('ermen', validators=[DataRequired()])
     sanmen = StringField('sanmen', validators=[DataRequired()])
     beizhu = StringField('beizhu', validators=[DataRequired()])
+
+class TongbaoForm(Form):
+    jianguan = TextAreaField('jianguan', validators=[DataRequired()])
+    jingwu = TextAreaField('jingwu', validators=[DataRequired()])
+    yuqing = TextAreaField('yuqing', validators=[DataRequired()])
+    shengchan = TextAreaField('shengchan', validators=[DataRequired()])

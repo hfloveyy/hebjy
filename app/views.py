@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template,flash,redirect,url_for,abort,request,session,g
 from .models import User,ReportModel,KanshouModel,TongbaoModel
-from .forms import LoginForm,ReportForm,KanshouForm
+from .forms import LoginForm,ReportForm,KanshouForm,TongbaoForm
 from flask.ext.login import login_user, login_required, logout_user, current_user,login_url
 from app import login_manager
 from app import db
@@ -59,7 +59,8 @@ def index():
     #合计
     report = ReportModel.query.group_by(ReportModel.jianqu).order_by(ReportModel.jianqu).order_by(ReportModel.createtime.desc())
     total = sum_all(report)
-    return render_template('index.html', content = reports,total = total,kanshou = kanshou)
+    tongbao = TongbaoModel.query.order_by(TongbaoModel.createtime.desc()).first()
+    return render_template('index.html', content = reports,total = total,kanshou = kanshou,tongbao = tongbao)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -75,6 +76,8 @@ def login():
             flash(user.nickname)
             if '看守大队' in user.nickname:
                 return redirect(url_for('addks'))
+            elif '管理员' in user.nickname:
+                return redirect(url_for('addtongbao'))
             else:
                 return redirect(request.args.get('next') or url_for('index'))
         else:
@@ -98,6 +101,8 @@ def add():
     username = g.user.nickname
     if '看守大队' in username:
         return redirect(url_for('addks'))
+    elif '管理员' in username:
+        return redirect(url_for('addtongbao'))
     reportform = ReportForm()
     if reportform.validate_on_submit():
         report = ReportModel(
@@ -122,7 +127,6 @@ def addks():
     username = g.user.nickname
     kanshouform = KanshouForm()
     if kanshouform.validate_on_submit():
-        print(kanshouform.zhibanlingdao.data)
         kanshou = KanshouModel(
             zhibanlingdao=kanshouform.zhibanlingdao.data,
             damen = kanshouform.damen.data,
@@ -135,3 +139,21 @@ def addks():
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('addks.html', username=username, form=kanshouform)
+
+@app.route("/addtongbao", methods=['GET', 'POST'])
+@login_required
+def addtongbao():
+    username = g.user.nickname
+    tongbaoform = TongbaoForm()
+    if tongbaoform.validate_on_submit():
+        tongbao = TongbaoModel(
+            createtime=get_time(time.time()),
+            jianguan = tongbaoform.jianguan.data,
+            jingwu = tongbaoform.jingwu.data,
+            yuqing = tongbaoform.yuqing.data,
+            shengchan = tongbaoform.shengchan.data
+        )
+        db.session.add(tongbao)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('addtongbao.html', username=username,  form=tongbaoform)

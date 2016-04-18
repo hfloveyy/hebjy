@@ -1,0 +1,51 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}哈尔滨监狱{% endblock %}
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">哈尔滨监狱</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">主页</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+ 
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        {% if  username %}
+            <a href="{{ url_for('logout') }}">退出登录</a>
+        {% endif %}
+    <h2>哈尔滨监狱指挥中心通报</h2>
+  <form action="{{ url_for('addtongbao') }}" method="post">
+      {{ form.hidden_tag() }}
+    <dl>
+      <dt>一、监管秩序岗:
+      <dd>
+      {{ form.jianguan }}
+      <dt>二、警务督察岗:
+      <dd>
+      {{ form.jingwu }}
+      <dt>狱情搜集岗:
+      <dd>
+      {{ form.yuqing }}
+      <dt>生产管理岗:
+      <dd>
+      {{ form.shengchan }}
+      <dd><input type="submit" value="上报">
+    </dl>
+  </form>
+    </div>
+</div>
+{% endblock %}
