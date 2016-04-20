@@ -73,7 +73,6 @@ def login():
         user = User.query.filter_by(nickname = form.name.data).first()
         if user is not None and user.password == form.password.data:
             login_user(user)
-            flash(user.nickname)
             if '看守大队' in user.nickname:
                 return redirect(url_for('addks'))
             elif '管理员' in user.nickname:
